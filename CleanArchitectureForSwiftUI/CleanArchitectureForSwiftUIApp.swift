@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct CleanArchitectureForSwiftUIApp: App {
+
+    @ObservedObject var router: Router
+
+    init() {
+        FirebaseApp.configure()
+        self.router = Router()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            self.router.destination?.view
         }
     }
 }
